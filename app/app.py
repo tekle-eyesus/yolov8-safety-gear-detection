@@ -1,14 +1,22 @@
-"""Entry point for the safety gear detection app."""
+import streamlit as st
+from PIL import Image
+from utils.inference import SafetyModel
+from utils.ui import set_modern_ui
 
-from app.utils.inference import load_model
-from app.utils.ui import run_ui
+set_modern_ui()
 
+model = SafetyModel()
 
-def main() -> None:
-    """Launch the UI after loading the model."""
-    model = load_model()
-    run_ui(model)
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
+if uploaded_file is not None:
+    st.markdown("### 🔍 Input Image")
+    image = Image.open(uploaded_file)
+    st.image(image, use_column_width=True)
 
-if __name__ == "__main__":
-    main()
+    if st.button("Run Detection"):
+        with st.spinner("Detecting safety equipment..."):
+            output = model.predict(image)
+
+        st.markdown("### ✅ Detection Result")
+        st.image(output, use_column_width=True)
