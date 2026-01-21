@@ -13,7 +13,7 @@ Upload an image → get real-time predictions → clean UI powered by Streamlit.
 ## Run Locally
 Clone the repository
 ```bash
-git clone https://github.com/<your-username>/yolov8-safety-gear-detection.git
+git clone https://github.com/tekle-eyesus/yolov8-safety-gear-detection.git
 cd yolov8-safety-gear-detection
 ```
 Create and activate virtual environment (recommended: Python 3.10)
